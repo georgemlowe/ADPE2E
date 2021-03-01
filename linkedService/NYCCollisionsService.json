@@ -1,0 +1,12 @@
+{
+	"name": "NYCCollisionsService",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://data.cityofnewyork.us/resource/h9gi-nx95.json",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
