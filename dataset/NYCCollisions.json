@@ -2,7 +2,7 @@
 	"name": "NYCCollisions",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "NYCCollisionsService",
+			"referenceName": "NYCData",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
