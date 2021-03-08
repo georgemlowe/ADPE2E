@@ -1,0 +1,20 @@
+{
+	"name": "collisions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "NYC Raw Store",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "collisions",
+				"folderPath": "nyc",
+				"container": "raw"
+			}
+		},
+		"schema": {}
+	}
+}
