@@ -21,11 +21,39 @@
 						"requestInterval": "00.00:00:00.010",
 						"requestMethod": "GET"
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Column_1']"
+								},
+								"sink": {
+									"path": "Column_1"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "NYCCollisions",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "raw_nyccollisions",
 						"type": "DatasetReference"
 					}
 				]
