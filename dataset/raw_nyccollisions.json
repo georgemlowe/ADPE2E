@@ -15,6 +15,93 @@
 				"container": "raw"
 			}
 		},
-		"schema": {}
+		"schema": {
+			"type": "object",
+			"properties": {
+				"crash_date": {
+					"type": "string"
+				},
+				"crash_time": {
+					"type": "string"
+				},
+				"latitude": {
+					"type": "string"
+				},
+				"longitude": {
+					"type": "string"
+				},
+				"location": {
+					"type": "object",
+					"properties": {
+						"latitude": {
+							"type": "string"
+						},
+						"longitude": {
+							"type": "string"
+						}
+					}
+				},
+				"on_street_name": {
+					"type": "string"
+				},
+				"number_of_persons_injured": {
+					"type": "string"
+				},
+				"number_of_persons_killed": {
+					"type": "string"
+				},
+				"number_of_pedestrians_injured": {
+					"type": "string"
+				},
+				"number_of_pedestrians_killed": {
+					"type": "string"
+				},
+				"number_of_cyclist_injured": {
+					"type": "string"
+				},
+				"number_of_cyclist_killed": {
+					"type": "string"
+				},
+				"number_of_motorist_injured": {
+					"type": "string"
+				},
+				"number_of_motorist_killed": {
+					"type": "string"
+				},
+				"contributing_factor_vehicle_1": {
+					"type": "string"
+				},
+				"contributing_factor_vehicle_2": {
+					"type": "string"
+				},
+				"collision_id": {
+					"type": "string"
+				},
+				"vehicle_type_code1": {
+					"type": "string"
+				},
+				"vehicle_type_code2": {
+					"type": "string"
+				},
+				"borough": {
+					"type": "string"
+				},
+				"zip_code": {
+					"type": "string"
+				},
+				"off_street_name": {
+					"type": "string"
+				},
+				"cross_street_name": {
+					"type": "string"
+				},
+				"contributing_factor_vehicle_3": {
+					"type": "string"
+				},
+				"vehicle_type_code_3": {
+					"type": "string"
+				}
+			}
+		}
 	}
 }
