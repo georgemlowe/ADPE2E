@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "gml-sbx-df-ingestaccidentdata"
 		},
+		"NYC Raw Store_connectionString": {
+			"value": ""
+		},
 		"NYCData_properties_typeProperties_url": {
 			"value": "https://data.cityofnewyork.us"
 		},

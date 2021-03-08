@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "gml-sbx-df-ingestaccidentdata"
 		},
+		"NYC Raw Store_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'NYC Raw Store'"
+		},
 		"NYCData_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://data.cityofnewyork.us"
@@ -28,7 +32,7 @@
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {
-					"relativeUrl": "/resource/h9gi-nx95.json"
+					"relativeUrl": "resource/h9gi-nx95.json/?$limit=1000"
 				},
 				"schema": []
 			},
@@ -50,6 +54,103 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/NYC Raw Store')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('NYC Raw Store_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gml-sbx-ingestnycdata')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Ingest data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET"
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "NYCCollisions",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "raw_nyccollisions",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/NYCCollisions')]",
+				"[concat(variables('factoryId'), '/datasets/raw_nyccollisions')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/raw_nyccollisions')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "NYC Raw Store",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "collisions",
+						"folderPath": "nycdata",
+						"container": "raw"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/NYC Raw Store')]"
+			]
 		}
 	]
 }

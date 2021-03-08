@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "gml-sbx-df-ingestaccidentdata"
 		},
+		"NYC Raw Store_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'NYC Raw Store'"
+		},
 		"NYCData_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://data.cityofnewyork.us"
@@ -37,6 +41,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"NYC Raw Store_connectionString": {
+						"value": "[parameters('NYC Raw Store_connectionString')]"
 					},
 					"NYCData_properties_typeProperties_url": {
 						"value": "[parameters('NYCData_properties_typeProperties_url')]"
