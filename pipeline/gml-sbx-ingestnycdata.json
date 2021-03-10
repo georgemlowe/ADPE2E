@@ -100,6 +100,13 @@
 						"referenceName": "raw_nyccollisions",
 						"type": "DatasetReference"
 					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "logging",
+							"type": "LinkedServiceReference"
+						},
+						"path": "log"
+					},
 					"enableLogging": true,
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
