@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "nycdata_agg.csv",
 				"folderPath": "nycdata",
 				"fileSystem": "derived"
 			},
