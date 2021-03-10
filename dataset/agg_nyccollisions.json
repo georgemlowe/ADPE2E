@@ -1,0 +1,23 @@
+{
+	"name": "agg_nyccollisions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "collisions_agg.csv",
+				"folderPath": "nycdata",
+				"fileSystem": "derived"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
